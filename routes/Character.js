@@ -6,7 +6,7 @@ const router = express.Router();
 // Rotta Get Characters (lettura tutti i personaggi)
 router.get('/', async (req, res) => {
     try {
-        const characters = await Character.find();
+        const characters = await Character.find().select('-__v');
         res.send(characters);
     } catch (err) {
         res.status(500).send(err.message);
@@ -32,12 +32,18 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const characterToCreate = req.body;
     try {
+        // Controllo se il nome del personaggio è già presente
+        const existingCharacter = await Character.findOne({ name: characterToCreate.name });
+        if (existingCharacter) {
+            return res.status(400).send('Il personaggio con questo nome esiste già.');
+        }
         const character = await Character.create(characterToCreate);
         res.status(201).send(character);
     } catch (err) {
         res.status(500).send(err.message);
     }
 });
+
 
 // Rotta Put Character (Modifica Personaggio)
 router.put('/:id', async (req, res) => {

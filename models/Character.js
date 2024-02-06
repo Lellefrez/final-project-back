@@ -1,20 +1,23 @@
 import mongoose from "mongoose"
 
-// Schema, model
 const { Schema, SchemaType, model } = mongoose;
 
 // Definizione Schema Personaggio
 const characterSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     surname: {
         type: String,
         required: true,
         trim: true
     },
-    Universe: {
+    image: {
+        type: String,
+    },
+    universe: {
         type: String,
         required: true,
         trim: true
@@ -22,7 +25,8 @@ const characterSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        minLength: 30
     },
     powerLevel: {
         type: Number,
@@ -38,7 +42,7 @@ const characterSchema = new mongoose.Schema({
     }
 });
 
-// Crea un modello usando lo schema
+
 const Character = mongoose.model('Character', characterSchema);
 
 export default Character;
