@@ -32,6 +32,12 @@ const characterSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    battles: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Battle',
+        },
+    ],
     victories: {
         type: Number,
         default: 0
