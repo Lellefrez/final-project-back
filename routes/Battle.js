@@ -24,6 +24,7 @@ router.post('/', async (req, res) => {
 });
 
 // Rotta Put Battle Result (Aggiorna risultato Battaglia)
+/*
 router.put('/:battleId/result', async (req, res) => {
     const { battleId } = req.params;
     const { winner } = req.body;
@@ -42,5 +43,5 @@ router.put('/:battleId/result', async (req, res) => {
         res.status(500).send(err.message);
     }
 });
-
+*/
 export default router;
