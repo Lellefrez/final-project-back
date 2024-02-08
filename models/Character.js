@@ -22,15 +22,17 @@ const characterSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+
+    powers: {
+        type: String,
+        required: true
+    },
+
     description: {
         type: String,
         required: true,
         trim: true,
         minLength: 30
-    },
-    powerLevel: {
-        type: Number,
-        required: true
     },
     battles: [
         {
