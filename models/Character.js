@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-const { Schema, SchemaType, model } = mongoose;
+const { Schema, SchemaTypes, model } = mongoose;
 
 // Definizione Schema Personaggio
 const characterSchema = new mongoose.Schema({
@@ -34,7 +34,7 @@ const characterSchema = new mongoose.Schema({
     },
     battles: [
         {
-            type: Schema.Types.ObjectId,
+            type: SchemaTypes.ObjectId,
             ref: 'Battle',
         },
     ],

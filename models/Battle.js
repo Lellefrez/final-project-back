@@ -1,12 +1,12 @@
 
 import mongoose from "mongoose";
 
-const { Schema, SchemaType, model } = mongoose;
+const { Schema, SchemaTypes, model } = mongoose;
 
 const battleSchema = new mongoose.Schema({
     characters: [
         {
-            type: Schema.Types.ObjectId,
+            type: SchemaTypes.ObjectId,
             ref: 'Character',
             required: true,
         },
@@ -15,7 +15,7 @@ const battleSchema = new mongoose.Schema({
         type: String,
     },
     winner: {
-        type: Schema.Types.ObjectId,
+        type: SchemaTypes.ObjectId,
         ref: 'Character',
     },
 });
