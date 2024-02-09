@@ -20,7 +20,6 @@ router.post('/', async (req, res) => {
             { $push: { battles: battle._id } }
         );
 
-
         //   Aggiorna n vittorie / sconfitte
         await Character.findByIdAndUpdate(winner, { $inc: { victories: 1 } });
         await Character.findByIdAndUpdate(loser, { $inc: { defeats: 1 } });
