@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
 // Rotta GET Battles (Lettura tutte Battaglie)
 router.get('/', async (req, res) => {
     try {
-        const battles = await Battle.find().select('-__v');
+        const battles = await Battle.find().select('-__v').populate("characters winner", "name surname");
         res.send(battles);
     } catch (err) {
         res.status(500).send(err.message);
