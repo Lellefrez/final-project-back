@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
 // Rotta GET Battles (Lettura tutte Battaglie)
 router.get('/', async (req, res) => {
     try {
-        const battles = await Battle.find().select('-__v').populate("characters winner", "name surname");
+        const battles = await Battle.find().select('-__v').populate("characters winner", "name surname image");
         res.send(battles);
     } catch (err) {
         res.status(500).send(err.message);
@@ -52,22 +52,6 @@ router.get('/:id', async (req, res) => {
         }
     } catch (err) {
         res.status(500).send(err.message);
-    }
-});
-
-// Rotta Delete Battle/:id (Eliminazione Battaglia specifica)
-router.delete('/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const battleToDelete = await Battle.findById(id);
-        if (!battleToDelete) {
-            return res.status(404).json({ error: 'Battaglia non trovata' });
-        }
-
-        await Battle.findByIdAndDelete(id);
-        res.status(204).send();
-    } catch (err) {
-        res.status(500).json({ error: err.message });
     }
 });
 
