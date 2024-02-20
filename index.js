@@ -13,7 +13,7 @@ const app = express();
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(cors({ origin: "*" }));
-app.use('/Characters', CharactersRouter);
+app.use('/characters', CharactersRouter);
 app.use('/Battles', BattleRouter);
 
 // Connessione a MongoDB
