@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
     try {
         const randomWinner = Math.floor(Math.random() * 2);
         const winner = characters[randomWinner];
-        const loser = characters.filter((item) => item !== winner)[0]
+        const loser = characters.find((item) => item !== winner);
         const battle = await Battle.create({ characters, background, winner });
 
         // Aggiorna i personaggi con l'ID della nuova battaglia
